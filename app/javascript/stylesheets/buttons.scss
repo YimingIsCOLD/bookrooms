@@ -1,0 +1,19 @@
+.btn-primary {
+  @include ring-without-border;
+
+  @apply w-full px-4 py-2;
+  @apply font-bold text-white;
+  @apply cursor-pointer;
+  @apply bg-blue-500;
+  @apply border-2 border-blue-500 rounded;
+
+  &:hover {
+    @apply bg-blue-600;
+    @apply border-blue-600;
+  }
+
+  &:active {
+    @apply bg-blue-700;
+    @apply border-blue-700;
+  }
+}

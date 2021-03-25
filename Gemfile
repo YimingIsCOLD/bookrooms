@@ -23,6 +23,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Load environment variables.
 gem 'dotenv-rails', '~> 2.7'
+# Authentication.
+gem 'devise', '~> 4.7'
 
 group :development, :test do
   # Code style checker for ruby, rails and rspec.
