@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
     # Registrations.
     get 'register', to: 'devise/registrations#new', as: 'new_user_registration'
-    post 'register', to: 'devise/registrations#create'
+    post 'register', to: 'devise/registrations#create', as: 'user_registration'
     get 'account/edit', to: 'devise/registrations#edit', as: 'edit_user_registration'
-    post 'account/edit', to: 'devise/registrations#update', as: 'user_registration'
+    post 'account/edit', to: 'devise/registrations#update'
 
     # Passwords.
     get 'forgot', to: 'devise/passwords#new', as: 'new_user_password'

@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       colors: {
         'light-blue': colors.lightBlue,
+      },
+      listStyleType: {
+        square: 'square'
       }
     },
   },

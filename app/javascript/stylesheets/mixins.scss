@@ -1,0 +1,14 @@
+@mixin ring-with-border {
+  @include ring-without-border;
+
+  &:focus {
+    @apply border-blue-500;
+  }
+}
+
+@mixin ring-without-border {
+  &:focus {
+    @apply outline-none;
+    @apply ring ring-blue-100;
+  }
+}
