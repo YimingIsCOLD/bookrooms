@@ -14,7 +14,7 @@ export type Timing = {
 };
 
 export type SearchParams = {
-  date: string;
+  date: Date;
   start_time: string;
   end_time: string;
   seats: number;

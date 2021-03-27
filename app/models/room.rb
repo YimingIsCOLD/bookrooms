@@ -7,8 +7,11 @@ class Room < ApplicationRecord
   validates :description, :seats, presence: true
 
   def self.available_rooms(params)
-    @rooms = Room.select(Room.attribute_names - %w[created_at updated_at]).where(['seats >= ?', params[:seats]])
-    @booked_rooms = Room.joins(:bookings).where(bookings: { date: params[:date] }).pluck(:id)
-    @rooms.reject { |r| @booked_rooms.include?(r) }
+    @date = params[:date]
+    @start_time = params[:start_time]
+    @seats = params[:seats]
+    @rooms = Room.select(Room.attribute_names - %w[created_at updated_at]).where(['seats >= ?', @seats])
+    @booked_rooms = Room.joins(:bookings).where(['bookings.date = ? AND bookings.start_time <= ? AND bookings.end_time >= ?', @date, @start_time, @start_time]).pluck(:id)
+    @rooms.reject { |r| @booked_rooms.include?(r.id) }
   end
 end

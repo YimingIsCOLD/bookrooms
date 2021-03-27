@@ -12,15 +12,17 @@ type OnDropdownChange<T = Timing> = (data: { selectedItem: T }) => void;
 const timings = generateTimings('09:00', 30, 19);
 
 const SearchMeetingRooms: React.FC = () => {
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [date, setDate] = useState(new Date());
   const [startTime, setStartTime] = useState(timings[0]);
   const [endTime, setEndTime] = useState(timings[1]);
   const [seats, setSeats] = useState(1);
   const [searchParams, setSearchParams] = useState<SearchParams | undefined>();
   const [availableRooms, setAvailableRooms] = useState<Rooms>();
 
-  const handleDateChanged = (_: Date[], currentDateString: string) => {
-    setDate(currentDateString);
+  const handleDateChanged = (dates: Date[]) => {
+    if (dates && dates.length === 1) {
+      setDate(dates[0]);
+    }
   };
 
   const handleStartTimeChanged: OnDropdownChange = (data) => {
@@ -39,8 +41,9 @@ const SearchMeetingRooms: React.FC = () => {
     }
   };
 
-  const handlePaxChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.valueAsNumber;
+  const handleSeatsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-ignore https://github.com/carbon-design-system/carbon/issues/7457
+    const value = e.imaginaryTarget.valueAsNumber;
     if (!isNaN(value)) {
       setSeats(value);
     }
@@ -84,7 +87,7 @@ const SearchMeetingRooms: React.FC = () => {
         }
       );
 
-      if (resp.status === 200) {
+      if (resp.status === 204) {
         window.location.assign('/dashboard/upcoming');
       }
     } catch (err) {
@@ -102,7 +105,7 @@ const SearchMeetingRooms: React.FC = () => {
               dateFormat="d-m-Y"
               minDate={new Date().toLocaleDateString()}
               maxDate={addMonths(new Date(), 12).toLocaleDateString()}
-              value={date}
+              value={new Date()}
               onChange={handleDateChanged}
             >
               <DatePickerInput autoComplete="off" id="date-picker-single" labelText="Date" />
@@ -141,7 +144,7 @@ const SearchMeetingRooms: React.FC = () => {
               max={8}
               label="Number of Seats"
               className="w-full"
-              onChange={handlePaxChanged}
+              onChange={handleSeatsChanged}
             />
           </div>
 
