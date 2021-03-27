@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 # Authentication.
 gem 'devise', '~> 4.7'
+# CORS.
+gem 'rack-cors', '~> 1.1'
 
 group :development, :test do
   # Code style checker for ruby, rails and rspec.
