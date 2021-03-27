@@ -5,7 +5,7 @@ class CreateRooms < ActiveRecord::Migration[6.1]
     create_table :rooms do |t|
       t.string :name
       t.text :description
-      t.integer :size
+      t.integer :seats
 
       t.timestamps
     end

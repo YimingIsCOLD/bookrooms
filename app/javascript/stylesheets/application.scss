@@ -19,3 +19,15 @@
     }
   }
 }
+
+.bx--date-picker--single {
+  width: 100%;
+
+  & > .bx--date-picker-container {
+    width: 100%;
+
+    & .bx--date-picker__input {
+      width: 100%;
+    }
+  }
+}
