@@ -12,7 +12,7 @@ class Room < ApplicationRecord
     @seats = params[:seats]
     @rooms = Room.select(Room.attribute_names - %w[created_at updated_at]).where(['seats >= ?', @seats])
     @booked_rooms = Room.joins(:bookings).where([
-                                                  'bookings.date = ? AND bookings.start_time <= ? AND bookings.end_time >= ?',
+                                                  'bookings.date = ? AND bookings.start_time <= ? AND bookings.end_time > ?',
                                                   @date, @start_time, @start_time
                                                 ]).pluck(:id)
     @rooms.reject { |r| @booked_rooms.include?(r.id) }
