@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
-    resources :bookings, only: %i[index create]
-    resources :search, only: %i[create]
+    post 'bookings', to: 'bookings#create'
+
+    get 'search', to: 'search#index'
   end
 
   root to: 'dashboard#index'

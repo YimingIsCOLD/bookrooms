@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { addMonths, isAfter, isEqual } from 'date-fns';
+import qs from 'qs';
+import { addMonths, format, isAfter, isEqual } from 'date-fns';
 import { DatePicker, DatePickerInput, Dropdown, NumberInput } from 'carbon-components-react';
 import { Rooms, SearchParams, Timing } from '../types';
 import { generateTimings, getCSRFToken } from '../utils';
@@ -52,18 +53,14 @@ const SearchMeetingRooms: React.FC = () => {
   const handleSearch = async () => {
     try {
       const data = {
-        date,
+        date: format(date, 'yyyy-MM-dd'),
         start_time: startTime.label,
         end_time: endTime.label,
         seats,
       };
       setSearchParams(data);
 
-      const resp = await axios.post<Rooms>('http://localhost:3000/api/search', data, {
-        headers: {
-          'X-CSRF-Token': getCSRFToken(),
-        },
-      });
+      const resp = await axios.get<Rooms>(`http://localhost:3000/api/search?${qs.stringify(data)}`);
       setAvailableRooms(resp.data);
     } catch (err) {
       throw err;
