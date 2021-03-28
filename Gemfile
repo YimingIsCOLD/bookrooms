@@ -29,6 +29,8 @@ gem 'devise', '~> 4.7'
 gem 'rack-cors', '~> 1.1'
 
 group :development, :test do
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'faker', '~> 2.17'
   gem 'rspec-rails', '~> 4.0.2'
   gem 'shoulda-matchers', '~> 4.0'
   # Code style checker for ruby, rails and rspec.
