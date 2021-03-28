@@ -29,6 +29,8 @@ gem 'devise', '~> 4.7'
 gem 'rack-cors', '~> 1.1'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 4.0.2'
+  gem 'shoulda-matchers', '~> 4.0'
   # Code style checker for ruby, rails and rspec.
   gem 'rubocop', '~> 1.10', require: false
   gem 'rubocop-performance', '~> 1.9', require: false
