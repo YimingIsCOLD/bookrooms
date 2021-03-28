@@ -4,23 +4,25 @@
 
     <h2 class="text-center text-3xl font-bold text-gray-700">Create your account</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'authentication-card' }) do |f| %>
-      <div class="field">
-        <%= f.label :name, class: 'field-label mb-2' %>
-        <%= f.text_field :name, autofocus: true, class: 'field-input' %>
-      </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'my-8 p-8 bg-white shadow rounded-md' }) do |f| %>
+      <div class='space-y-6'>
+        <div>
+          <%= f.label :name, class: 'field-label mb-2' %>
+          <%= f.text_field :name, autofocus: true, class: 'field-input' %>
+        </div>
 
-      <div class="field">
-        <%= f.label :email, class: 'field-label mb-2' %>
-        <%= f.email_field :email, autocomplete: "email", class: 'field-input' %>
-      </div>
+        <div>
+          <%= f.label :email, class: 'field-label mb-2' %>
+          <%= f.email_field :email, autocomplete: "email", class: 'field-input' %>
+        </div>
 
-      <div class="field">
-        <%= f.label :password, class: 'field-label mb-2' %>
-        <%= f.password_field :password, autocomplete: "new-password", class: 'field-input' %>
-      </div>
+        <div>
+          <%= f.label :password, class: 'field-label mb-2' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'field-input' %>
+        </div>
 
-      <%= f.submit "Continue", class: 'btn-primary' %>
+        <%= f.submit "Continue", class: 'btn-primary w-full' %>
+      </div>
     <% end %>
 
     <%= render "devise/shared/links" %>

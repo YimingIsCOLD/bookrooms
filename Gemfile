@@ -25,8 +25,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 # Authentication.
 gem 'devise', '~> 4.7'
+# CORS.
+gem 'rack-cors', '~> 1.1'
 
 group :development, :test do
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'faker', '~> 2.17'
+  gem 'rspec-rails', '~> 4.0.2'
+  gem 'shoulda-matchers', '~> 4.0'
   # Code style checker for ruby, rails and rspec.
   gem 'rubocop', '~> 1.10', require: false
   gem 'rubocop-performance', '~> 1.9', require: false

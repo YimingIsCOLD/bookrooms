@@ -23,5 +23,12 @@ Rails.application.routes.draw do
     post 'reset', to: 'devise/passwords#update', as: 'user_password'
   end
 
+  scope '/api' do
+    post 'bookings', to: 'bookings#create'
+
+    get 'search', to: 'search#index'
+  end
+
   root to: 'dashboard#index'
+  get '*any_route', to: 'dashboard#index'
 end

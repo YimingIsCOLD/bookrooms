@@ -1,0 +1,22 @@
+@import 'mixins';
+
+.field-label {
+  @apply block;
+  @apply text-sm font-medium;
+}
+
+.field-input {
+  @include ring-with-border;
+
+  @apply w-full px-3 py-2;
+  @apply text-black;
+  @apply border-2 border-gray-300 rounded;
+}
+
+.field-checkbox {
+  @include ring-with-border;
+
+  @apply text-blue-500;
+  @apply border-gray-300 rounded;
+  @apply cursor-pointer;
+}
