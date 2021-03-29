@@ -34,7 +34,7 @@ const UpcomingMeetingsView: React.FC = () => {
     <div className="p-8 space-y-6">
       {bookings && bookings?.length > 0
         ? bookings.map((booking) => <BookedRoom key={booking.id} booking={booking} onClick={handleCancel}/>)
-        : null}
+        : <p>No bookings</p>}
     </div>
   );
 };

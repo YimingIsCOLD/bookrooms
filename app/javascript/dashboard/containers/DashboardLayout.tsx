@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useSelected from '../hooks/useSelected';
 import clsx from 'clsx';
-import axios from 'axios';
 import { getCSRFToken } from '../utils';
 
 type NavigationSelected = 'upcoming' | 'search';
@@ -24,18 +23,6 @@ const DashboardLayout: React.FC = (props) => {
         break;
     }
   }, [location, selected]);
-
-  const handleLogout = async () => {
-    try {
-      await axios.delete(`http://localhost:3000/logout`, {
-        headers: {
-          'X-CSRF-Token': getCSRFToken(),
-        },
-      });
-    } catch (err) {
-      throw err;
-    }
-  };
 
   const navigationItems: NavigationItem[] = [
     {
