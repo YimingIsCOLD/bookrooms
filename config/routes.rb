@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
+    get 'bookings', to: 'bookings#index'
     post 'bookings', to: 'bookings#create'
 
     get 'search', to: 'search#index'

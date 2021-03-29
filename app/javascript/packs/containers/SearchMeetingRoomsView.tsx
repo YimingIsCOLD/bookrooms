@@ -3,22 +3,28 @@ import React, { useState } from 'react';
 import qs from 'qs';
 import { addMonths, format, isAfter, isEqual } from 'date-fns';
 import { DatePicker, DatePickerInput, Dropdown, NumberInput } from 'carbon-components-react';
-import { Rooms, SearchParams, Timing } from '../types';
+import { Room, Timing } from '../types';
 import { generateTimings, getCSRFToken } from '../utils';
-import MeetingRoom from '../components/MeetingRoom';
+import { AvailableRoom } from '../components/Room';
 
 type OnDropdownChange<T = Timing> = (data: { selectedItem: T }) => void;
+type SearchParams = {
+  date: string;
+  start_time: string;
+  end_time: string;
+  seats: number;
+};
 
 // Generates timings from 09:00 to 18:00, thus 19 steps.
 const timings = generateTimings('09:00', 30, 19);
 
-const SearchMeetingRooms: React.FC = () => {
+const SearchMeetingRoomsView: React.FC = () => {
   const [date, setDate] = useState(new Date());
   const [startTime, setStartTime] = useState(timings[0]);
   const [endTime, setEndTime] = useState(timings[1]);
   const [seats, setSeats] = useState(1);
   const [searchParams, setSearchParams] = useState<SearchParams | undefined>();
-  const [availableRooms, setAvailableRooms] = useState<Rooms>();
+  const [availableRooms, setAvailableRooms] = useState<Room[]>();
 
   const handleDateChanged = (dates: Date[]) => {
     if (dates && dates.length === 1) {
@@ -60,7 +66,9 @@ const SearchMeetingRooms: React.FC = () => {
       };
       setSearchParams(data);
 
-      const resp = await axios.get<Rooms>(`http://localhost:3000/api/search?${qs.stringify(data)}`);
+      const resp = await axios.get<Room[]>(
+        `http://localhost:3000/api/search?${qs.stringify(data)}`
+      );
       setAvailableRooms(resp.data);
     } catch (err) {
       throw err;
@@ -102,7 +110,7 @@ const SearchMeetingRooms: React.FC = () => {
               dateFormat="d-m-Y"
               minDate={new Date().toLocaleDateString()}
               maxDate={addMonths(new Date(), 12).toLocaleDateString()}
-              value={new Date()}
+              value={date}
               onChange={handleDateChanged}
             >
               <DatePickerInput autoComplete="off" id="date-picker-single" labelText="Date" />
@@ -145,7 +153,7 @@ const SearchMeetingRooms: React.FC = () => {
             />
           </div>
 
-          <button className="btn-primary w-full" onClick={handleSearch}>
+          <button className="btn btn-primary w-full" onClick={handleSearch}>
             Find a Room
           </button>
         </div>
@@ -154,14 +162,7 @@ const SearchMeetingRooms: React.FC = () => {
       <div className="ml-80 p-8">
         <div className="space-y-6">
           {availableRooms?.map((room) => (
-            <MeetingRoom
-              key={room.id}
-              id={room.id}
-              name={room.name}
-              description={room.description}
-              seats={room.seats}
-              onClick={handleBookNow}
-            />
+            <AvailableRoom key={room.id} room={room} onClick={handleBookNow} />
           ))}
         </div>
       </div>
@@ -169,4 +170,4 @@ const SearchMeetingRooms: React.FC = () => {
   );
 };
 
-export default SearchMeetingRooms;
+export default SearchMeetingRoomsView;

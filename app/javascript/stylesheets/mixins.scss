@@ -1,14 +1,14 @@
-@mixin ring-with-border {
+@mixin ring-with-border($color: 'blue') {
   @include ring-without-border;
 
   &:focus {
-    @apply border-blue-500;
+    @apply border-#{$color}-500;
   }
 }
 
-@mixin ring-without-border {
+@mixin ring-without-border($color: 'blue') {
   &:focus {
     @apply outline-none;
-    @apply ring ring-blue-100;
+    @apply ring ring-#{$color}-100;
   }
 }

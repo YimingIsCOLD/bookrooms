@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import NotFoundView from './containers/NotFoundView';
 import DashboardLayout from './containers/DashboardLayout';
 import UpcomingMeetingsView from './containers/UpcomingMeetingsView';
-import SearchMeetingRooms from './containers/SearchMeetingRooms';
+import SearchMeetingRoomsView from './containers/SearchMeetingRoomsView';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +17,7 @@ ReactDOM.render(
           <DashboardLayout>
             <Switch>
               <Route exact path="/dashboard/upcoming" component={UpcomingMeetingsView} />
-              <Route exact path="/dashboard/search" component={SearchMeetingRooms} />
+              <Route exact path="/dashboard/search" component={SearchMeetingRoomsView} />
               <Redirect to="/dashboard/upcoming" />
             </Switch>
           </DashboardLayout>

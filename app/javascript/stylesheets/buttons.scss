@@ -1,21 +1,42 @@
 @import 'mixins';
 
-.btn-primary {
-  @include ring-without-border;
-
+.btn {
   @apply px-4 py-2;
   @apply font-bold text-white;
   @apply cursor-pointer;
-  @apply bg-blue-500;
   @apply border-2 border-blue-500 rounded;
 
-  &:hover {
-    @apply bg-blue-600;
-    @apply border-blue-600;
+  &.btn-primary {
+    @include ring-without-border;
+
+    @apply bg-blue-500;
+    @apply border-blue-500;
+
+    &:hover {
+      @apply bg-blue-600;
+      @apply border-blue-600;
+    }
+
+    &:active {
+      @apply bg-blue-700;
+      @apply border-blue-700;
+    }
   }
 
-  &:active {
-    @apply bg-blue-700;
-    @apply border-blue-700;
+  &.btn-danger {
+    @include ring-with-border('red');
+
+    @apply bg-red-500;
+    @apply border-red-500;
+
+    &:hover {
+      @apply bg-red-600;
+      @apply border-red-600;
+    }
+
+    &:active {
+      @apply bg-red-700;
+      @apply border-red-700;
+    }
   }
 }
