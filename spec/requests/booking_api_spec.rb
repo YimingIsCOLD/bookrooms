@@ -30,4 +30,13 @@ RSpec.describe 'Bookings API', type: :request do
 
     expect(response).to have_http_status(:no_content)
   end
+
+  it 'be able to delete booking' do
+    booked_room = create(:room)
+    booking = create(:booking, user_id: user.id, room_id: booked_room.id, date: DateTime.now)
+
+    delete "/api/bookings/#{booking.id}"
+
+    expect(response).to have_http_status(:no_content)
+  end
 end
