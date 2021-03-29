@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
-import NotFoundView from './containers/NotFoundView';
-import DashboardLayout from './containers/DashboardLayout';
-import UpcomingMeetingsView from './containers/UpcomingMeetingsView';
-import SearchMeetingRoomsView from './containers/SearchMeetingRoomsView';
+import NotFoundView from '../dashboard/containers/NotFoundView';
+import DashboardLayout from '../dashboard/containers/DashboardLayout';
+import UpcomingMeetingsView from '../dashboard/containers/UpcomingMeetingsView';
+import SearchMeetingRoomsView from '../dashboard/containers/SearchMeetingRoomsView';
 
 ReactDOM.render(
   <React.StrictMode>
