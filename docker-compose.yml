@@ -1,5 +1,28 @@
 version: "3"
 services:
+  rails:
+    build:
+      context: .
+      args:
+        - BUNDLE_WITHOUT=development:test
+        - RAILS_ENV=production
+    image: bookrooms-rails:latest
+    container_name: bookrooms-rails
+    env_file: .env
+    environment:
+      - RAILS_ENV=production
+      - NODE_ENV=production
+      - BOOKROOMS_DATABASE_HOST=postgres
+      - BOOKROOMS_DATABASE_PASSWORD=secret
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - RAILS_LOG_TO_STDOUT=1
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+    volumes:
+      - public:/app/public
+
   postgres:
     image: postgres:12-alpine
     container_name: bookrooms-postgres
@@ -7,14 +30,26 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=bookrooms_development
+      - POSTGRES_DB=bookrooms_production
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=secret
     volumes:
       - postgres:/data/postgres
 
+  nginx:
+    image: nginx:1.19.8-alpine
+    container_name: bookrooms-nginx
+    depends_on:
+      - rails
+    ports:
+      - 8080:8080
+    volumes:
+      - ./scripts/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - public:/app/public
+
 volumes:
   postgres:
+  public:
 
 networks:
   default:

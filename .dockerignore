@@ -1,0 +1,47 @@
+# Ignore git.
+.git
+.gitignore
+
+# Ignore bundle config.
+.bundle
+
+# Ignore all log files and temp files.
+/log
+!/log/.keep
+/tmp
+!/tmp/.keep
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore uploaded files in development.
+/storage
+!/storage/.keep
+
+# Ignore precompiled files.
+/public/assets
+/public/packs
+/public/packs-test
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Ignore node_modules
+/node_modules
+
+# Ignore OS specific files.
+.DS_Store
+
+# Ignore IDE folders.
+.vscode
+.idea
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore docker related files.
+docker-compose.*
+Dockerfile*
+
+# Ignore environment variables files.
+.env*

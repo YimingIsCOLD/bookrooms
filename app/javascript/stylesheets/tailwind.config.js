@@ -5,6 +5,7 @@ module.exports = {
     "./app/**/*.html.erb",
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
+    "./app/javascript/**/*.tsx"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

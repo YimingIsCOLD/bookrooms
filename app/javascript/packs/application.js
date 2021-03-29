@@ -7,11 +7,11 @@ import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 
-// Tailwind CSS.
-import 'stylesheets/application.scss';
-
 // Carbon CSS.
 import 'carbon-components/scss/globals/scss/styles.scss';
+
+// Tailwind CSS.
+import 'stylesheets/application.scss';
 
 Rails.start();
 Turbolinks.start();
