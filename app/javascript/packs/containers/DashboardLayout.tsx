@@ -1,8 +1,10 @@
-import { Search32, Workspace32 } from '@carbon/icons-react';
+import { Logout32, Search32, Workspace32 } from '@carbon/icons-react';
 import React, { useEffect } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useSelected from '../hooks/useSelected';
 import clsx from 'clsx';
+import axios from 'axios';
+import { getCSRFToken } from '../utils';
 
 type NavigationSelected = 'upcoming' | 'search';
 type NavigationItem = { selected: boolean; icon: React.ReactNode } & LinkProps;
@@ -22,6 +24,18 @@ const DashboardLayout: React.FC = (props) => {
         break;
     }
   }, [location, selected]);
+
+  const handleLogout = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/logout`, {
+        headers: {
+          'X-CSRF-Token': getCSRFToken(),
+        },
+      });
+    } catch (err) {
+      throw err;
+    }
+  };
 
   const navigationItems: NavigationItem[] = [
     {
@@ -55,6 +69,15 @@ const DashboardLayout: React.FC = (props) => {
                 {item.icon}
               </Link>
             ))}
+            <form method="post" action="http://localhost:3000/logout">
+              <input type="hidden" name="authenticity_token" value={getCSRFToken()}/>
+              <button
+                type="submit"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white outline-none"
+              >
+                <Logout32 />
+              </button>
+            </form>
           </div>
         </div>
       </nav>
