@@ -4,8 +4,9 @@ class BookingsController < ApplicationController
   respond_to :json
 
   def index
-    render json: current_user.bookings.where('date >= ?', DateTime.now).includes(:room).to_json(include: [:room],
-                                                                                                except: [:room_id])
+    @bookings = current_user.bookings.where('date >= ?', DateTime.now).includes(:room).order(:date, :start_time)
+    render json: @bookings.to_json(include: [:room],
+                                   except: [:room_id])
   end
 
   def create
