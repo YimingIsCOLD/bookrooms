@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Booking } from '../types';
-import MeetingRoom from '../components/MeetingRoom';
+import { BookedRoom } from '../components/Room';
 
 const UpcomingMeetingsView: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>();
@@ -15,7 +15,7 @@ const UpcomingMeetingsView: React.FC = () => {
   return (
     <div className="p-8 space-y-6">
       {bookings && bookings?.length > 0
-        ? bookings.map((booking) => <MeetingRoom room={booking.room} alreadyBooked={true} />)
+        ? bookings.map((booking) => <BookedRoom key={booking.id} booking={booking} />)
         : null}
     </div>
   );
