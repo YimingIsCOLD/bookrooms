@@ -73,7 +73,7 @@ const DashboardLayout: React.FC = (props) => {
               <input type="hidden" name="authenticity_token" value={getCSRFToken()}/>
               <button
                 type="submit"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white outline-none"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none"
               >
                 <Logout32 />
               </button>
