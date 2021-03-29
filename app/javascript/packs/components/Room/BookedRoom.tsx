@@ -22,7 +22,7 @@ const BookedRoom: React.FC<BookedRoomProps> = (props) => {
         <p className="text-sm font-medium text-gray-500">{booking.room.description}</p>
       </div>
       <div className="px-4 py-3 bg-gray-50 text-right rounded-b">
-        <button className="btn btn-danger" onClick={() => onClick?.(booking.room.id)}>
+        <button className="btn btn-danger" onClick={() => onClick?.(booking.id)}>
           Cancel
         </button>
       </div>

@@ -16,6 +16,11 @@ class BookingsController < ApplicationController
     head :no_content
   end
 
+  def delete
+    current_user.bookings.delete(params[:id])
+    head :no_content
+  end
+
   private
 
   def booking_params
