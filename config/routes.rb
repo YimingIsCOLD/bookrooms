@@ -32,5 +32,5 @@ Rails.application.routes.draw do
   end
 
   root to: 'dashboard#index'
-  get '*any_route' => redirect('/')
+  get '*any_route', to: 'dashboard#index'
 end
